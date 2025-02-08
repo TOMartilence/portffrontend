@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    font-family: "Montserrat", serif;
+    outline: none;
+    scroll-behavior: smooth;
+    outline: none;
+}
+
+:root{
+    --bg-color : #fdfdfd;
+    --text-color : #333;
+    --main-color : #754ef9;
+    --shadow-color : rgba(0,0,0,0.2);
+    --white-color : #fdfdfd;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body{
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 7%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    transition: 0.5s ease;
+}
+
+.header.sticky .navbar a{
+    color: var(--text-color);
+}
+
+.header.sticky .navbar a:hover{
+    color: var(--main-color);
+    opacity: .7;
+}
+
+.header.sticky{
+    background-color: var(--bg-color);
+    box-shadow: 0 0.1rem 0.1rem var(--shadow-color);
+    color: #333;
+}
+.logo{
+    font-size: 2.5rem;
+    color: var(--main-color);
+    font-weight: default;
+    margin-right: auto;
+}
+
+.navbar a{
+   font-size: 1.7rem ;
+   color: var(--white-color);
+   font-weight: 500;
+   margin-right: 3.5rem;
+}
+
+.navbar a.active::before{
+    content:' ';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: .2rem;
+    background: var(--white-color);
+}
+
+#darkmode{
+    font-size: 2.4rem;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+section{
+    min-height: 100vh;
+    padding: 10rem 7% 2rem;
+}
+.home{
+    min-height: 100vh;
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+}
+.home .home-content{
+    max-width: 44rem;
+}
+
+.home-content h3{
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 2;
+}
+
+.home-content h2{
+    font-size: 2.6rem;
+    font-weight: 700;
+}
+
+.home-content p{
+    font-size: 1.6rem;
+}
+
+.home-content .socialmedia a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: transparent;
+    border: solid 2px black;
+    border-radius: 50%;
+    box-shadow: 0 .2rem .5rem var(--shadow-color) ;
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 2.5rem 1.5rem 3rem 0;
+    transition: .2 ease;
+}
+
+.home-content .socialmedia a:hover{
+    background: var(--main-color);
+    color: var(--white-color);
+}
+
+.btn{
+    display: inline-block;
+    padding: 1.2rem 2.8rem;
+    background: var(--main-color);
+    border-radius: .6rem;
+    box-shadow: 0 .2rem .5rem var(--shadow-color);
+    font-size: 1.6rem;
+    color: var(--white-color);
+    letter-spacing: .1rem;
+    font-weight: 600;
+    transition: .5 ease;
+}
+
+.btn:hover{
+    background: transparent;
+    color: var(--main-color);
+    border: var(--main-color) 2px solid;
+}
+
+.home .profession-container{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 768px;
+    height: 768px;
+    background-color: transparent;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.home .profession-container .profession-box{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 768px;
+    height: 768px;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    animation: spin 20s linear infinite; 
+    align-items: center;
+} 
+
+@keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(3600deg);
+    }
+  }
+
+.home .profession-box .profession{
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: var(--main-color);
+    transform: rotate(calc(360deg/4 *var(--i)));
+    transform-origin: 384px;
+    background-color: var(--bg-color);
+    padding: 13 0;
+}
+
+.home .profession i{
+    font-size: 3.8rem;
+}
+
+.home .profession h3{
+    font-size: 3.2rem;
+    line-height: 1;
+    font-weight: 600;
+}
+
+.home .profession-box .circle{
+    width: 560px;
+    height: 560px;
+    background-color: transparent;
+    border: 3px solid var(--main-color);
+    border-radius: 50%;
+}
+
+.home .profession-box .profession:nth-child(1)i{
+    margin-right: 15px;
+}
+
+.home .profession-box .profession:nth-child(2),.home .profession-box .profession:nth-child(4){
+    margin-right: 15px;
+}
+
+.home .profession-container .overlay{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 384px solid var(--main-color);
+    border-left: 384px solid transparent;
+    border-bottom: 384px solid var(--main-color);
+    border-right: 384px solid var(--main-color);
+}
+
+.home-img img{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10%;
+    pointer-events: none;
+}
+
+.span{
+    color: var(--main-color);
+}
+.timeline {
+    position: relative;
+    margin-top: 2rem;
+    padding-left: 2rem;
+    border-left: 4px solid white;
+}
+
+.timeline-item {
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "•";
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    font-size: 2rem;
+    color: white;
+}
+
+.heading {
+    font-size: 4.5rem;
+}
+
+
+.skills{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.skills .left{
+    width: 40%;
+}
+
+.skills .left h2{
+    font-size: 4rem;
+    line-height: 2;
+}
+
+.skills .left h3{
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.skills .left p{
+    line-height: 2rem;
+}
+
+.skill .right{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+.skill {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and bar */
+    padding: 12px;
+}
+
+.bar{
+    width: 600px;
+    height: 2rem;
+    border: 2px solid black;
+    text-align: right;
+    padding: 3px;
+    background-color: var(--bg-color);
+}
+
+
+.skillName{
+    font-weight: 600;
+    margin-right: 50%;
+}
+
+.skill i{
+    margin: 3px;
+    font-size: 2rem;
+}
+.projects {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: #f8f9fa;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.projects {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: #f8f9fa;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Project Container (For Grid Layout) */
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusts based on screen size */
+    gap: 2rem;
+    max-width: 80%;
+    margin: auto;
+}
+
+/* Individual Project Cards */
+.project-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-title {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.project-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.project-details {
+    list-style-type: none;
+    padding: 0;
+}
+
+.project-details li {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+/* View More Button */
+.view-more {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.view-more:hover {
+    background: #0056b3;
+}
+
+/* Responsive for Smaller Screens */
+@media (max-width: 768px) {
+    .project-container {
+        grid-template-columns: 1fr; /* Only 1 card per row on mobile */
+    }
+}
+
+
+    .contact {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .contact-title {
+        margin-top: 40px;
+        font-size: 3rem;
+        color: #00000081;
+    }
+    
+    .contact-subtitle {
+        font-size: 1.5rem;
+        color: #000000;
+        margin-bottom: 2rem;
+    }
+    
+    .contact-form {
+        min-width: 40%;
+        margin: auto;
+    }
+    
+    .input-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .input-group input,
+    .input-group textarea {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        border-radius: 8px;
+        background: rgb(122, 116, 116);
+        color: #ffffff;
+        font-size: 1.8rem;
+        backdrop-filter: blur(5px);
+    }
+    
+    .input-group input::placeholder,
+    .input-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+        background: #754ef9;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .btn:hover {
+        background: #5a3ebc;
+        box-shadow: 0 0 15px #754ef9;
+    }
+
+
+
+
+    /* Variables (Converted to hardcoded values) */
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Layout */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Styling */
+  .timeline {
+    margin: 4em auto;
+    position: relative;
+    max-width: 400em;
+  }
+  
+  .timeline:before {
+    background-color: black;
+    content: '';
+    margin-left: -1px;
+    position: absolute;
+    top: 0;
+    left: 2em;
+    width: 2px;
+    height: 100%;
+  }
+  
+  .timeline-event {
+    position: relative;
+  }
+  
+  .timeline-event:hover .timeline-event-icon {
+    transform: rotate(-45deg);
+    background-color: rgb(168, 50, 121);
+  }
+  
+  .timeline-event:hover .timeline-event-thumbnail {
+    box-shadow: inset 40em 0 0 0 rgb(168, 50, 121);
+  }
+  
+  .timeline-event-copy {
+    padding: 2em;
+    position: relative;
+    top: -1.875em;
+    left: 4em;
+    width: 80%;
+  }
+  
+  .timeline-event-copy h3 {
+    font-size: 2em;
+  }
+
+  .timeline-event-copy h4 {
+    font-size: 1.2em;
+    margin-bottom: 1.2em;
+  }
+  
+  .timeline-event-copy strong {
+    font-weight: 700;
+  }
+  
+  .timeline-event-copy p:not(.timeline-event-thumbnail) {
+    padding-bottom: 1.2em;
+
+  }
+  
+  .timeline-event-copy p {
+    font-size: 1.4rem;
+  } 
+  .timeline-event-icon {
+    transition: transform 0.2s ease-in;
+    transform: rotate(45deg);
+    
+    background-color: black;
+    outline: 10px solid white;
+    display: block;
+    margin: 0.5em 0.5em 0.5em -0.5em;
+    position: absolute;
+    top: 0;
+    left: 2em;
+    width: 1em;
+    height: 1em;
+  }
+  
+  .timeline-event-thumbnail {
+    transition: box-shadow 0.5s ease-in 0.1s;
+    color: white;
+    font-size: 0.75em;
+    
+    background-color: black;
+    box-shadow: inset 0 0 0 0em #ef795a;
+    display: inline-block;
+    margin-bottom: 1.2em;
+    padding: 0.25em 1em 0.2em 1em;
+  }
+  
+    
+
+    .footer {
+        background: var(--bg-color);
+        color: var(--text-color);
+        text-align: center;
+        padding: 2rem 1rem;
+        font-size: 1.4rem;
+    }
+    
+    .footer-content {
+        max-width: 800px;
+        margin: auto;
+    }
+    
+    .footer-links {
+        margin-top: 1rem;
+    }
+    
+    .footer-links a {
+        color: #bbb;
+        margin: 0 1rem;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+        color: #fff;
+    }
+    
+    
+</style>
+
+</head>
+<body>
+        <header class="header">
+            <a href="#" class="logo">Portfolio</a>
+            <nav class="navbar">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <i class='bx bx-moon' id="darkmode"></i>        
+        </header>
+
+        <section class="home" id="home">
+            <div class="home-content">
+                <h2>Hello, I am</h2>
+                <h3>Thomas Jefferson</h3>
+                <p>With a deep passion for Robotics, IoT, and System Design, I love designing, fabricating, and integrating individual system components. My focus lies in energy efficiency, leveraging power electronics and advanced power management systems to create smarter, more sustainable solutions. Join me on this journey to explore innovation, efficiency, and some self-proclaimed impressive work! </p>                <div class="socialmedia">
+                    <a href="#"><i class='bx bxl-linkedin' ></i></a>                    
+                    <a href="#"><i class='bx bxl-github' ></i></a>
+                    <a href="#"><i class='bx bxl-meta' ></i></a>
+                </div>
+                <a href="#" class="btn">Open Resume</a>
+
+            </div>
+
+            <div class="profession-container">
+                <div class="profession-box">
+                    <div class="profession" style="--i:0;">
+                        <i class='bx bx-cloud-lightning'></i>
+                        <h3>Electrical Engineer</h3>
+                    </div>
+
+                    <div class="profession" style="--i:1;">
+                        <i class='bx bx-code-alt' ></i>                        
+                        <h3>MERN developer</h3>
+                    </div>
+
+                    <div class="profession" style="--i:2;">
+                        <i class='bx bx-edit-alt' ></i>                        <h3>Article Writer</h3>
+                    </div>
+
+                    <div class="profession" style="--i:3;">
+                        <i class='bx bx-cog'></i>                           <h3>Roboticist</h3>
+                    </div>
+
+                    <div class="circle">
+
+                    </div>
+                </div>
+
+                <div class="overlay">
+
+                </div>
+            </div>
+
+            <div class="home-img">
+                <img src="" alt="">
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <h1 style="text-align: center;font-size: 4rem;">About</h1>
+            <ul class="timeline">
+                <li class="timeline-event">
+                  <label class="timeline-event-icon"></label>
+                  <div class="timeline-event-copy">
+                    <p class="timeline-event-thumbnail">July 2022 - July 2026</p>
+                    <h3>Electrical and Electronics Engineering</h3>
+                    <h4>Amrita School of Engineering <span style="font-weight: 400;font-size: .9rem;">Coimbatore</span></h4>
+                    <p><strong>Domain Interest : <br> Power Electronics, Control Systems, Battery Management Systems, Embedded and Digital electronics</strong><br></p>
+                    <p><strong>Projects in Progress</strong><br>1kW 50kHz Dual Active Bridge Converter for Bidirectional EV charging. <br> Ferrite core high frequency simulation using ANSYS. <br>Post-Surgery health monitor kit with IoT + RF communication</p>
+                  </div>
+                </li>
+
+                <li class="timeline-event">
+                    <label class="timeline-event-icon"></label>
+                    <div class="timeline-event-copy">
+                      <p class="timeline-event-thumbnail">May 2024 - July 2024</p>
+                      <h3>Internship Trainee</h3>
+                      <h4>ISRO (Indian Space and Research Organisation) <span style="font-weight: 400;font-size: .9rem;">Trivandrum</span></h4>
+                      <p><strong>On-site skills : <br>PLC programming, Time critical system design, Sensor integration, Data-Acquisition, SCADA development</strong><br></p>
+                      <p><strong>Breif</strong><br>During my time at ISRO, I had the opportunity to visit various rocket test stands, observing and recording critical test data. I worked on integrating this data into SCADA systems, ensuring real-time monitoring and control. Additionally, I programmed PLCs to simulate and control different test scenarios, refining automation processes for improved precision and safety in rocket testing operations.
+                      </p>
+                    </div>
+                  </li>
+
+
+
+
+                  <li class="timeline-event">
+                    <label class="timeline-event-icon"></label>
+                    <div class="timeline-event-copy">
+                      <p class="timeline-event-thumbnail">Feb 2024 - August 2024</p>
+                      <h3>Team Lead</h3>
+                      <h4>Intel IoT Club<span style="font-weight: 400;font-size: .9rem;">Amrita University</span></h4>
+                      <p><strong>On-site skills : <br>ESP32 - Programming, Web-Development, IoT, Sensor Actuator integration</strong><br></p>
+                      <p><strong>Breif</strong><br>We conducted events focused on practical IoT applications. Our biggest project was a Web UI-controlled robotic arm, where we integrated ESP32 for wireless control and designed a responsive interface for real-time movement. Additionally, we conducted hands-on workshops, including setting up a Raspberry Pi home server, ESP32 communication techniques, and an ESP32 hackathon, where participants built innovative IoT solutions. These experiences fostered collaboration and deepened our understanding of embedded systems and cloud-connected robotics.
+                      </p>
+                    </div>
+                  </li>
+
+
+
+                  <li class="timeline-event">
+                    <label class="timeline-event-icon"></label>
+                    <div class="timeline-event-copy">
+                        <p class="timeline-event-thumbnail">July 2024</p>
+                        <h3>Event Management Member</h3>
+                        <h4>TEDx Club<span style="font-weight: 400;font-size: .9rem;"> Amrita University</span></h4>
+                        <p><strong>On-site skills : <br>Event Planning, Logistics Management, Coordination, Public Engagement</strong><br></p>
+                        <p><strong>Brief</strong><br>As a part of the TEDx Club event management team, I contributed to organizing and executing impactful events that brought together speakers, students, and industry professionals. My role involved handling logistics, coordinating with various teams, and ensuring smooth event flow. I worked on speaker curation, audience engagement, and branding efforts to maintain the TEDx spirit. Through these experiences, I honed my skills in planning, execution, and collaboration to deliver high-quality events.</p>
+                    </div>
+                </li>
+
+                <li class="timeline-event">
+                    <label class="timeline-event-icon"></label>
+                    <div class="timeline-event-copy">
+                        <p class="timeline-event-thumbnail">August 2024 - Present</p>
+                        <h3>Member</h3>
+                        <h4>INCOSE<span style="font-weight: 400;font-size: .9rem;"> (International Council on Systems Engineering)</span></h4>
+                        <p><strong>On-site skills : <br>Systems Engineering, Model-Based Design, Requirement Analysis, Interdisciplinary Collaboration</strong><br></p>
+                        <p><strong>Brief</strong><br>As a member of INCOSE, I engage in discussions and activities centered around systems engineering best practices, model-based design, and efficient system lifecycle management. I actively participate in knowledge-sharing sessions, workshops, and networking events that enhance my understanding of large-scale system development, integration, and optimization. Through INCOSE, I am expanding my expertise in structuring complex projects, ensuring reliability, and bridging the gap between hardware and software systems.</p>
+                    </div>
+                </li>
+            
+              </ul>  
+        </section>
+
+        <section class="skills" id="skills">
+            <div class="left">
+                <h2>
+                    Skills
+                </h2>
+                <h3>
+                    Relevant skills I use to create projects
+                </h3>
+
+                <p>
+                    <ul style="list-style: none;font-size: 1rem;line-height: 2rem; font-weight: 700;">
+                        <li>
+                            ARM7-TDMI-S : STM32F103RB
+                        </li>
+                        <li>
+                            ESP-32
+                        </li>
+                        <li>
+                            PIC16F877A
+                        </li>
+                        <li>
+                            ARDUINO
+                        </li>
+                        <li>
+                            ARM M4 : Raspberry PI pico
+                        </li>
+
+                        <li>
+                            EasyEDA 
+                        </li>
+
+                        <li>
+
+                        </li>
+
+                        <li>
+                            NoSQL : MongoDB
+                        </li>
+                        <li>
+                            SQL : mySQL
+                        </li>
+
+                        <li>
+                            Node.js, React.js
+                        </li>
+
+
+                    </ul>
+                </p>
+            </div>
+            <div class="right">
+                <div class="skill">
+                    <i class='bx bx-power-off' ></i>                    
+                    <div class="bar">
+                        <div class="percentage" style="width: 80%;background-color: rgba(219, 35, 35, 0.612);margin: 0;padding: 0;color: rgb(255, 255, 255)">
+                            <span class="skillName">Power Electronics</span> 80%
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="skill">
+                    <i class='bx bx-cog'></i>                    <div class="bar">
+                        <div class="percentage" style="width: 70%;background-color: rgba(68, 192, 68, 0.692);margin: 0;padding: 0;">
+                            <span class="skillName">Robot Control</span> 70%
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="skill">
+                    <i class='bx bx-chip'></i>                    <div class="bar">
+                        <div class="percentage" style="width: 60%;background-color: rgba(29, 86, 209, 0.234);margin: 0;padding: 0;">
+                            <span class="skillName">Embedded Systems Design</span> 60%
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="skill">
+                    <i class='bx bx-walk'></i>                    <div class="bar">
+                        <div class="percentage" style="width:50%;background-color: rgba(68, 149, 192, 0.736);margin: 0;padding: 0;">
+                            <span class="skillName">Robot Drive Design</span> 50%
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="skill">
+                    <i class='bx bxl-c-plus-plus' ></i>                    <div class="bar">
+                        <div class="percentage" style="width: 85%;background-color: rgba(113, 125, 53, 0.234);margin: 0;padding: 0;">
+                            <span class="skillName">OOPs with C++</span> 85%
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="skill">
+                    <i class='bx bx-microchip' ></i>                    <div class="bar">
+                        <div class="percentage" style="width: 30%;background-color: rgba(68, 192, 68, 0.234);margin: 0;padding: 0;">
+                            <span class="skillName">FreeRTOS</span> 30%
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="skill">
+                    <i class='bx bxl-react' ></i>                    <div class="bar">
+                        <div class="percentage" style="width: 80%;background-color: rgba(232, 104, 219, 0.577);margin: 0;padding: 0;">
+                            <span class="skillName">MERN Fullstack development</span> 80%
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="skill">
+                    <i class='bx bx-wifi' ></i>                    <div class="bar">
+                        <div class="percentage" style="width: 70%;background-color: rgba(68, 192, 68, 0.234);margin: 0;padding: 0;">
+                            <span class="skillName">IoT Application Development</span> 70%
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+
+
+        <section class="projects" id="projects">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="project-container">
+                <div class="project-card">
+                    <h2 class="project-title">Wi-Fi Controlled DAQ Rover</h2>
+                    <h3 class="project-subtitle">A Smart Data Acquisition Rover with Energy Efficiency</h3>
+                    <ul class="project-details">
+                        <li><strong>4-Quadrant Drive:</strong> Supports forward, reverse, braking, and regenerative mode.</li>
+                        <li><strong>Data Logging:</strong> Captures real-time current, voltage, and environmental data.</li>
+                        <li><strong>Wireless Control:</strong> Uses MQTT to transmit data to a custom React UI.</li>
+                        <li><strong>Battery Management:</strong> Monitors and stores energy during regenerative braking.</li>
+                        <li><strong>Remote Monitoring:</strong> Web UI for real-time visualization of logged data.</li>
+                    </ul>
+                    <a href="#" class="view-more">View More</a>
+                </div>
+        
+                <div class="project-card">
+                    <h2 class="project-title">TESS AI Assistant</h2>
+                    <h3 class="project-subtitle">A Voice-Controlled AI with Multi-Function Capabilities</h3>
+                    <ul class="project-details">
+                        <li><strong>Natural Conversations:</strong> Uses NLP to respond contextually like JARVIS.</li>
+                        <li><strong>Email Automation:</strong> Can compose and send emails via voice commands.</li>
+                        <li><strong>Weather Updates:</strong> Fetches real-time weather using external APIs.</li>
+                        <li><strong>Image Generation:</strong> Creates AI-generated images based on user prompts.</li>
+                        <li><strong>API Integration:</strong> Uses multiple APIs for enhanced AI responses.</li>
+                    </ul>
+                    <a href="#" class="view-more">View More</a>
+                </div>
+                
+
+
+
+                <div class="project-card">
+                    <h2 class="project-title">Web UI Controlled Robotic Arm</h2>
+                    <h3 class="project-subtitle">IoT-based Robotic Control System</h3>
+                    <ul class="project-details">
+                        <li><strong>ESP32 Integration:</strong> Wireless control via MQTT and Web UI.</li>
+                        <li><strong>Custom UI:</strong> Developed using React for real-time movement.</li>
+                        <li><strong>Precision Control:</strong> Handles multiple degrees of freedom with servo feedback.</li>
+                        <li><strong>Event Demonstrations:</strong> Used in IoT workshops and hackathons.</li>
+                    </ul>
+                    <a href="#" class="view-more">View More</a>
+                </div>
+
+
+
+                <div class="project-card">
+                    <h2 class="project-title">Digital Function Generator</h2>
+                    <h3 class="project-subtitle">A Low-Cost Signal Generator for Lab Applications</h3>
+                    <ul class="project-details">
+                        <li><strong>Waveform Generation:</strong> Produces sine, square, and triangle waves.</li>
+                        <li><strong>Digital Control:</strong> Adjustable frequency and amplitude via microcontroller.</li>
+                        <li><strong>Compact & Affordable:</strong> Designed for low-cost, portable use.</li>
+                        <li><strong>Precision Output:</strong> Ensures stable and accurate signal generation.</li>
+                        <li><strong>Versatile Applications:</strong> Useful for testing circuits and signal processing.</li>
+                    </ul>
+                    <a href="#" class="view-more">View More</a>
+                </div>
+                
+                
+                <div class="project-card">
+                    <h2 class="project-title">MERN Club Management System</h2>
+                    <h3 class="project-subtitle">A Full-Stack Web App for Efficient Club Administration</h3>
+                    <ul class="project-details">
+                        <li><strong>Admin Panel:</strong> Manage members, events, and roles with an intuitive dashboard.</li>
+                        <li><strong>User Authentication:</strong> Secure login system with role-based access control.</li>
+                        <li><strong>Event Management:</strong> Create, update, and track club events seamlessly.</li>
+                        <li><strong>Real-Time Updates:</strong> Uses WebSockets/MQTT for instant notifications.</li>
+                        <li><strong>Responsive Design:</strong> Fully functional across mobile and desktop.</li>
+                    </ul>
+                    <a href="#" class="view-more">View More</a>
+                </div>
+                
+
+
+
+                <div class="project-card">
+                    <h2 class="project-title">1kW Dual Active Bridge (DAB) Converter</h2>
+                    <h3 class="project-subtitle">Bidirectional Power Conversion for EV Charging</h3>
+                    <ul class="project-details">
+                        <li><strong>Bidirectional Operation:</strong> Supports both grid-to-vehicle (G2V) and vehicle-to-grid (V2G) charging.</li>
+                        <li><strong>High Power Density:</strong> Designed for 1kW power transfer with high efficiency.</li>
+                        <li><strong>Soft-Switching:</strong> Uses phase-shift control for reduced switching losses.</li>
+                        <li><strong>Isolation:</strong> High-frequency transformer for safety and galvanic isolation.</li>
+                        <li><strong>EV Integration:</strong> Compatible with smart charging systems for optimized energy flow.</li>
+                    </ul>
+                    <a href="#" class="view-more">View More</a>
+                </div>
+                
+            </div>
+        </section>
+        
+
+        <section class="contact" id="contact">
+            <h2 class="contact-title">Get in Touch</h2>
+            <p class="contact-subtitle">Feel free to reach out for collaborations or any inquiries.</p>
+            
+            <form class="contact-form">
+                <div class="input-group">
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required placeholder="Your Email">
+                </div>
+                <div class="input-group">
+                    <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <p>&copy; 2025 Thomas Jefferson R</p>
+                </div>
+            </footer>
+        </section>
+        
+        
+        
+        
+        
+
+        <script>
+            window.onscroll=()=>{
+
+let header  = document.querySelector(".header")
+header.classList.toggle("sticky",window.scrollY>100)
+}
+
+document.querySelector(".contact-form").addEventListener("submit", async function (e) {
+    e.preventDefault(); // Prevent form submission
+
+    // Collect form data
+    const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value,
+    };
+
+    // Store data in an array (if needed)
+    const dataArray = Object.values(formData);
+    console.log("Data Array:", dataArray); // Just for debugging
+
+    try {
+        // Send data to the backend using Axios
+        const response = await axios.post("http://localhost:5000/contact", formData);
+
+        if (response.status === 200) {
+            alert("Message sent successfully!");
+        }
+    } catch (error) {
+        console.error("Error sending message:", error);
+        alert("Failed to send message.");
+    }
+});
+
+        </script>
+    </body>
+</html>
