@@ -1046,11 +1046,11 @@ document.querySelector(".contact-form").addEventListener("submit", async functio
 
     // Store data in an array (if needed)
     const dataArray = Object.values(formData);
-    console.log("Data Array:", dataArray); // Just for debugging
 
     try {
         // Send data to the backend using Axios
         const response = await axios.post("https://perwebbackend.onrender.com/contact", formData);
+        console.log(response);
         
         if (response.data.status == 200) {
             alert("Message sent successfully!");
