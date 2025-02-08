@@ -1050,9 +1050,9 @@ document.querySelector(".contact-form").addEventListener("submit", async functio
     try {
         // Send data to the backend using Axios
         const response = await axios.post("https://perwebbackend.onrender.com/contact", formData);
-        console.log(response);
+        console.log(response.status);
         
-        if (response.data.status == 200) {
+        if (response.status == 200) {
             alert("Message sent successfully!");
         }
     } catch (error) {
