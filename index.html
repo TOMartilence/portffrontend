@@ -99,194 +99,217 @@ body{
 section{
     min-height: 100vh;
     padding: 10rem 7% 2rem;
-}
-.home{
+}/* Home Section Styles */
+
+/* Home Section */
+.home {
     min-height: 100vh;
-    overflow-y: hidden;
     display: flex;
     align-items: center;
-}
-.home .home-content{
-    max-width: 44rem;
+    padding: 0 9%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.5s ease;
 }
 
-.home-content h3{
+.home-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 5rem 0;
+}
+
+.text-content {
+    flex: 1 1 45rem;
+}
+
+.skills-wheel {
+    flex: 1 1 35rem;
+    position: relative;
+    min-height: 35rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--main-color);
+}
+
+.name {
+    font-size: 5.6rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+}
+
+.profession-container {
+    min-height: 4.5rem;
+    margin: 1.5rem 0;
+}
+
+.profession-title {
     font-size: 3.2rem;
-    font-weight: 700;
-    line-height: 2;
+    font-weight: 600;
+    color: var(--main-color);
+    transition: all 0.5s ease;
 }
 
-.home-content h2{
-    font-size: 2.6rem;
-    font-weight: 700;
-}
-
-.home-content p{
+.description {
     font-size: 1.6rem;
+    margin: 2rem 0 4rem;
+    max-width: 60rem;
+    line-height: 1.6;
 }
 
-.home-content .socialmedia a{
+.home-buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1.2rem 2.8rem;
+    background: var(--main-color);
+    color: var(--white-color);
+    border-radius: 0.6rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn.secondary {
+    background: transparent;
+    border: 0.2rem solid var(--main-color);
+    color: var(--main-color);
+}
+
+/* Skills Wheel */
+
+
+/* Home Social */
+.home-social {
+    position: absolute;
+    bottom: 5rem;
+    left: 9%;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.home-social a {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 4rem;
     height: 4rem;
     background: transparent;
-    border: solid 2px black;
+    border: 0.2rem solid var(--main-color);
     border-radius: 50%;
-    box-shadow: 0 .2rem .5rem var(--shadow-color) ;
     font-size: 2rem;
     color: var(--main-color);
-    margin: 2.5rem 1.5rem 3rem 0;
-    transition: .2 ease;
+    transition: all 0.3s ease;
 }
 
-.home-content .socialmedia a:hover{
+.home-social a:hover {
     background: var(--main-color);
     color: var(--white-color);
+    transform: translateY(-0.3rem);
+    box-shadow: 0 0 1rem var(--main-color);
 }
 
-.btn{
-    display: inline-block;
-    padding: 1.2rem 2.8rem;
-    background: var(--main-color);
-    border-radius: .6rem;
-    box-shadow: 0 .2rem .5rem var(--shadow-color);
-    font-size: 1.6rem;
-    color: var(--white-color);
-    letter-spacing: .1rem;
-    font-weight: 600;
-    transition: .5 ease;
-}
-
-.btn:hover{
-    background: transparent;
-    color: var(--main-color);
-    border: var(--main-color) 2px solid;
-}
-
-.home .profession-container{
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    width: 768px;
-    height: 768px;
-    background-color: transparent;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.home .profession-container .profession-box{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 768px;
-    height: 768px;
-    background: transparent;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    animation: spin 20s linear infinite; 
-    align-items: center;
-} 
-
-@keyframes spin {
-    from {
-      transform: rotate(0deg);
+/* Animations */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
     }
-    to {
-      transform: rotate(3600deg);
+    100% {
+        transform: rotate(360deg);
     }
-  }
-
-.home .profession-box .profession{
-    position: absolute;
-    left: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    color: var(--main-color);
-    transform: rotate(calc(360deg/4 *var(--i)));
-    transform-origin: 384px;
-    background-color: var(--bg-color);
-    padding: 13 0;
 }
 
-.home .profession i{
-    font-size: 3.8rem;
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .home {
+        padding: 0 5%;
+    }
 }
 
-.home .profession h3{
-    font-size: 3.2rem;
-    line-height: 1;
-    font-weight: 600;
+@media (max-width: 991px) {
+    .home-content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 8rem;
+    }
+    
+    .skills-wheel {
+        margin-top: 5rem;
+    }
+    
+    .home-social {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        justify-content: center;
+    }
 }
 
-.home .profession-box .circle{
-    width: 560px;
-    height: 560px;
-    background-color: transparent;
-    border: 3px solid var(--main-color);
-    border-radius: 50%;
+@media (max-width: 768px) {
+    .name {
+        font-size: 4.5rem;
+    }
+    
+    .profession-title {
+        font-size: 2.8rem;
+    }
 }
 
-.home .profession-box .profession:nth-child(1)i{
-    margin-right: 15px;
+@media (max-width: 576px) {
+    .name {
+        font-size: 3.8rem;
+    }
+    
+    .intro {
+        font-size: 2.2rem;
+    }
+    
+    .profession-title {
+        font-size: 2.4rem;
+    }
+    
+    .description {
+        font-size: 1.4rem;
+    }
+    
+    .btn {
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+    }
+    
+    
 }
 
-.home .profession-box .profession:nth-child(2),.home .profession-box .profession:nth-child(4){
-    margin-right: 15px;
-}
 
-.home .profession-container .overlay{
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 0;
-    height: 0;
-    border-top: 384px solid var(--main-color);
-    border-left: 384px solid transparent;
-    border-bottom: 384px solid var(--main-color);
-    border-right: 384px solid var(--main-color);
-}
 
-.home-img img{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 10%;
-    pointer-events: none;
-}
 
-.span{
-    color: var(--main-color);
-}
-.timeline {
-    position: relative;
-    margin-top: 2rem;
-    padding-left: 2rem;
-    border-left: 4px solid white;
-}
 
-.timeline-item {
-    margin-bottom: 2rem;
-    padding-left: 1rem;
-    position: relative;
-}
 
-.timeline-item::before {
-    content: "•";
-    position: absolute;
-    left: -1rem;
-    top: 0;
-    font-size: 2rem;
-    color: white;
-}
 
-.heading {
-    font-size: 4.5rem;
-}
 
 
 /* Skills Section */
@@ -1033,55 +1056,43 @@ body {
             <i class='bx bx-moon' id="darkmode"></i>      
               
         </header>
-
         <section class="home" id="home">
-            <div class="home-content">
-                <h2>Hello, I am</h2>
-                <h3>Thomas Jefferson</h3>
-                <p>With a deep passion for Robotics, IoT, and System Design, I love designing, fabricating, and integrating individual system components. My focus lies in energy efficiency, leveraging power electronics and advanced power management systems to create smarter, more sustainable solutions. Join me on this journey to explore innovation, efficiency, and some self-proclaimed impressive work! </p>                <div class="socialmedia">
-                    <a href="#"><i class='bx bxl-linkedin' ></i></a>                    
-                    <a href="#"><i class='bx bxl-github' ></i></a>
-                    <a href="#"><i class='bx bxl-meta' ></i></a>
-                </div>
-                <a href="#" class="btn">Open Resume</a>
-
-            </div>
-
-            <div class="profession-container">
-                <div class="profession-box">
-                    <div class="profession" style="--i:0;">
-                        <i class='bx bx-cloud-lightning'></i>
-                        <h3>Electrical Engineer</h3>
+            <div class="home-container">
+                <div class="home-content">
+                    <div class="text-content">
+                        <h3 class="intro">Hello, I'm</h3>
+                        <h1 class="name">Thomas Jefferson R</h1>
+                        <div class="profession-container">
+                            <span class="profession-title">Electrical Engineer</span>
+                        </div>
+                        <p class="description">
+                            Passionate about power electronics, embedded systems, and IoT development. 
+                            Currently pursuing Electrical Engineering while working on cutting-edge 
+                            projects in EV charging and robotic systems.
+                        </p>
+                        <div class="home-buttons">
+                            <a href="#projects" class="btn">View Projects</a>
+                            <a href="#contact" class="btn secondary">Contact Me</a>
+                        </div>
                     </div>
-
-                    <div class="profession" style="--i:1;">
-                        <i class='bx bx-code-alt' ></i>                        
-                        <h3>MERN developer</h3>
-                    </div>
-
-                    <div class="profession" style="--i:2;">
-                        <i class='bx bx-edit-alt' ></i>                        <h3>Article Writer</h3>
-                    </div>
-
-                    <div class="profession" style="--i:3;">
-                        <i class='bx bx-cog'></i>                           <h3>Roboticist</h3>
-                    </div>
-
-                    <div class="circle">
-
+                    <div class="skills-wheel">
+                        <img src="./asset/1730136367312-removebg-preview.png" alt="" style="width: 80%;">
+                        </div>
                     </div>
                 </div>
-
-                <div class="overlay">
-
+                <div class="home-social">
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                    <a href="#"><i class='bx bxl-github'></i></a>
+                    <a href="#"><i class='bx bxl-gmail'></i></a>
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
                 </div>
-            </div>
-
-            <div class="home-img">
-                <img src="" alt="">
             </div>
         </section>
 
+
+
+
+        
         <section class="about" id="about">
             <h1 style="text-align: center;font-size: 4rem;">About</h1>
             <ul class="timeline">
@@ -1523,6 +1534,37 @@ body {
         
 
         <script>
+
+
+// Dynamic Profession Text Animation
+document.addEventListener('DOMContentLoaded', function() {
+    const professions = ["Electrical Engineer", "MERN Developer", "Article Writer", "Roboticist"];
+    const professionElement = document.querySelector('.profession-title');
+    const wheelItems = document.querySelectorAll('.wheel-item');
+    let currentIndex = 0;
+    
+    // Animate profession text
+    function rotateProfession() {
+        professionElement.style.opacity = '0';
+        
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % professions.length;
+            professionElement.textContent = professions[currentIndex];
+            professionElement.style.opacity = '1';
+        }, 500);
+    }
+    
+    // Highlight wheel item on hover
+    wheelItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            const profession = this.getAttribute('data-profession');
+            professionElement.textContent = profession;
+        });
+    });
+    
+    // Start rotation
+    setInterval(rotateProfession, 3000);
+});
             window.onscroll=()=>{
 
 let header  = document.querySelector(".header")
