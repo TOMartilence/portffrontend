@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap');
@@ -288,149 +289,532 @@ section{
 }
 
 
-.skills{
+/* Skills Section */
+.skills {
+    padding: 8rem 5%;
+    background: var(--bg-color);
+}
+
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.section-subtitle {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    color: #666;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.skill-category {
+    background: white;
+    border-radius: 10px;
+    padding: 2.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-10px);
+}
+
+.category-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--main-color);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 1rem;
 }
 
-.skills .left{
-    width: 40%;
+.category-title i {
+    font-size: 2.4rem;
 }
 
-.skills .left h2{
-    font-size: 4rem;
-    line-height: 2;
-}
-
-.skills .left h3{
-    font-size: 2rem;
-    margin-bottom: 5px;
-}
-
-.skills .left p{
-    line-height: 2rem;
-}
-
-.skill .right{
+.skill-items {
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    gap: 1.8rem;
 }
-.skill {
+
+.skill-item {
+    margin-bottom: 1.5rem;
+}
+
+.skill-info {
     display: flex;
-    align-items: center;
-    gap: 10px; /* Space between icon and bar */
-    padding: 12px;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
 }
 
-.bar{
-    width: 600px;
-    height: 2rem;
-    border: 2px solid black;
-    text-align: right;
-    padding: 3px;
-    background-color: var(--bg-color);
-}
-
-
-.skillName{
+.skill-name {
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-right: 50%;
+    color: var(--text-color);
 }
 
-.skill i{
-    margin: 3px;
-    font-size: 2rem;
+.skill-percent {
+    font-size: 1.4rem;
+    color: #666;
 }
+
+.skill-bar {
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .skills {
+        padding: 6rem 5%;
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 3rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .skill-category {
+        padding: 2rem;
+    }
+    
+    .category-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .skill-name {
+        font-size: 1.4rem;
+    }
+    
+    .skill-percent {
+        font-size: 1.3rem;
+    }
+    
+    .skill-bar {
+        height: 6px;
+    }
+}
+
+
+
+/* Projects Section */
 .projects {
+    padding: 8rem 5%;
+    background: #f8f9fa;
+}
+
+.projects .section-title {
+    font-size: 3.5rem;
     text-align: center;
-    padding: 4rem 2rem;
-    background-color: #f8f9fa;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+.projects .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--main-color), #754ef9aa, transparent);
+    border-radius: 3px;
 }
 
-.projects {
-    text-align: center;
-    padding: 4rem 2rem;
-    background-color: #f8f9fa;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-}
-
-/* Project Container (For Grid Layout) */
+/* Project Grid Container */
 .project-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusts based on screen size */
-    gap: 2rem;
-    max-width: 80%;
-    margin: auto;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 5rem auto 0;
+    padding: 0 2rem;
 }
 
 /* Individual Project Cards */
 .project-card {
     background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    position: relative;
+    z-index: 1;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--main-color) 0%, #9c7aff 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.project-card:hover::before {
+    opacity: 0.05;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+.project-image-container {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--main-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.project-content {
+    padding: 2.5rem;
 }
 
 .project-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
     color: #333;
+    position: relative;
+    display: inline-block;
+}
+
+.project-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--main-color);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.project-card:hover .project-title::after {
+    width: 100px;
 }
 
 .project-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #666;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
 }
 
 .project-details {
-    list-style-type: none;
-    padding: 0;
+    list-style: none;
+    margin-bottom: 2.5rem;
 }
 
 .project-details li {
-    font-size: 1rem;
-    margin: 0.5rem 0;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #555;
 }
 
-/* View More Button */
+.project-details li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--main-color);
+    font-size: 1.2rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
 .view-more {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.8rem 1.5rem;
-    background: #007bff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 2rem;
+    background: var(--main-color);
     color: white;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
     text-decoration: none;
-    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(117, 78, 249, 0.3);
 }
 
 .view-more:hover {
-    background: #0056b3;
+    background: #5d3ac9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(117, 78, 249, 0.4);
 }
 
-/* Responsive for Smaller Screens */
+.view-more i {
+    margin-left: 8px;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.view-more:hover i {
+    transform: translateX(3px);
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .project-container {
-        grid-template-columns: 1fr; /* Only 1 card per row on mobile */
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+    }
+    
+    .project-content {
+        padding: 2rem;
     }
 }
 
+@media (max-width: 480px) {
+    .projects .section-title {
+        font-size: 2.8rem;
+    }
+    
+    .project-title {
+        font-size: 1.8rem;
+    }
+    
+    .project-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .project-details li {
+        font-size: 1.3rem;
+    }
+    
+    .view-more {
+        padding: 0.7rem 1.8rem;
+    }
+}
+/* Responsive for Smaller Screens */
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+    
+    .home .profession-container {
+        right: -10%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header {
+        padding: 2rem 3%;
+    }
+    
+    section {
+        padding: 10rem 3% 2rem;
+    }
+    
+    .home .profession-container {
+        right: -15%;
+    }
+    
+    .skills {
+        flex-direction: column;
+        gap: 5rem;
+    }
+    
+    .skills .left, .skills .right {
+        width: 100%;
+    }
+    
+    .bar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+    }
+    
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        display: none;
+    }
+    
+    .navbar.active {
+        display: block;
+    }
+    
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+        color: var(--text-color);
+    }
+    
+    .home {
+        flex-direction: column;
+        padding: 0 3%;
+    }
+    
+    .home-content {
+        max-width: 100%;
+        margin-top: 5rem;
+    }
+    
+    .home .profession-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 5rem;
+        transform: none;
+    }
+    
+    .home .profession-box {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    
+    .home .profession-box .profession {
+        transform: none;
+        position: static;
+        display: flex;
+        flex-direction: row;
+        margin: 1rem 0;
+    }
+    
+    .home .profession-box .circle {
+        display: none;
+    }
+    
+    .home .profession-container .overlay {
+        display: none;
+    }
+    
+    .timeline {
+        padding-left: 1rem;
+    }
+    
+    .timeline-event-copy {
+        left: 3em;
+        width: 85%;
+    }
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 50%;
+    }
+    
+    .home-img img {
+        display: none;
+    }
+    
+    .contact-form {
+        width: 90%;
+    }
+    
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 45%;
+    }
+    
+    .header {
+        padding: 2rem;
+    }
+    
+    section {
+        padding: 10rem 2rem 2rem;
+    }
+    
+    .timeline-event-copy {
+        left: 2em;
+        width: 90%;
+    }
+}
 
     .contact {
         text-align: center;
@@ -646,7 +1030,8 @@ body {
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <i class='bx bx-moon' id="darkmode"></i>        
+            <i class='bx bx-moon' id="darkmode"></i>      
+              
         </header>
 
         <section class="home" id="home">
@@ -766,237 +1151,347 @@ body {
         </section>
 
         <section class="skills" id="skills">
-            <div class="left">
-                <h2>
-                    Skills
-                </h2>
-                <h3>
-                    Relevant skills I use to create projects
-                </h3>
-
-                <p>
-                    <ul style="list-style: none;font-size: 1rem;line-height: 2rem; font-weight: 700;">
-                        <li>
-                            ARM7-TDMI-S : STM32F103RB
-                        </li>
-                        <li>
-                            ESP-32
-                        </li>
-                        <li>
-                            PIC16F877A
-                        </li>
-                        <li>
-                            ARDUINO
-                        </li>
-                        <li>
-                            ARM M4 : Raspberry PI pico
-                        </li>
-
-                        <li>
-                            EasyEDA 
-                        </li>
-
-                        <li>
-
-                        </li>
-
-                        <li>
-                            NoSQL : MongoDB
-                        </li>
-                        <li>
-                            SQL : mySQL
-                        </li>
-
-                        <li>
-                            Node.js, React.js
-                        </li>
-
-
-                    </ul>
-                </p>
-            </div>
-            <div class="right">
-                <div class="skill">
-                    <i class='bx bx-power-off' ></i>                    
-                    <div class="bar">
-                        <div class="percentage" style="width: 80%;background-color: rgba(219, 35, 35, 0.612);margin: 0;padding: 0;color: rgb(255, 255, 255)">
-                            <span class="skillName">Power Electronics</span> 80%
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="skill">
-                    <i class='bx bx-cog'></i>                    <div class="bar">
-                        <div class="percentage" style="width: 70%;background-color: rgba(68, 192, 68, 0.692);margin: 0;padding: 0;">
-                            <span class="skillName">Robot Control</span> 70%
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="skill">
-                    <i class='bx bx-chip'></i>                    <div class="bar">
-                        <div class="percentage" style="width: 60%;background-color: rgba(29, 86, 209, 0.234);margin: 0;padding: 0;">
-                            <span class="skillName">Embedded Systems Design</span> 60%
-                        </div>
-                    </div>
-                </div>
-
+            <div class="skills-container">
+                <h2 class="section-title">My Skills</h2>
+                <p class="section-subtitle">Technologies and competencies I work with</p>
                 
-                <div class="skill">
-                    <i class='bx bx-walk'></i>                    <div class="bar">
-                        <div class="percentage" style="width:50%;background-color: rgba(68, 149, 192, 0.736);margin: 0;padding: 0;">
-                            <span class="skillName">Robot Drive Design</span> 50%
+                <div class="skills-grid">
+                    <!-- Technical Skills -->
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <i class='bx bx-cog'></i>
+                            Technical Skills
+                        </h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Power Electronics</span>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%; background-color: #754ef9;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Robot Control</span>
+                                    <span class="skill-percent">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%; background-color: #4e79f9;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Embedded Systems</span>
+                                    <span class="skill-percent">60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 60%; background-color: #4ef9a1;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Robot Drive Design</span>
+                                    <span class="skill-percent">50%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 50%; background-color: #f94ee4;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Programming Skills -->
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <i class='bx bx-code-alt'></i>
+                            Programming Skills
+                        </h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">C++</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%; background-color: #f9a14e;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">FreeRTOS</span>
+                                    <span class="skill-percent">30%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 30%; background-color: #4eacf9;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">MERN Stack</span>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%; background-color: #a14ef9;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">IoT Development</span>
+                                    <span class="skill-percent">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%; background-color: #4ef9d9;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hardware Skills -->
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <i class='bx bx-chip'></i>
+                            Hardware Skills
+                        </h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">STM32F103RB</span>
+                                    <span class="skill-percent">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%; background-color: #f94e4e;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">ESP32</span>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%; background-color: #4ef96e;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">PIC16F877A</span>
+                                    <span class="skill-percent">65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 65%; background-color: #f9f14e;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Raspberry Pi Pico</span>
+                                    <span class="skill-percent">60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 60%; background-color: #4e5ef9;"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
-
-                <div class="skill">
-                    <i class='bx bxl-c-plus-plus' ></i>                    <div class="bar">
-                        <div class="percentage" style="width: 85%;background-color: rgba(113, 125, 53, 0.234);margin: 0;padding: 0;">
-                            <span class="skillName">OOPs with C++</span> 85%
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-                <div class="skill">
-                    <i class='bx bx-microchip' ></i>                    <div class="bar">
-                        <div class="percentage" style="width: 30%;background-color: rgba(68, 192, 68, 0.234);margin: 0;padding: 0;">
-                            <span class="skillName">FreeRTOS</span> 30%
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="skill">
-                    <i class='bx bxl-react' ></i>                    <div class="bar">
-                        <div class="percentage" style="width: 80%;background-color: rgba(232, 104, 219, 0.577);margin: 0;padding: 0;">
-                            <span class="skillName">MERN Fullstack development</span> 80%
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="skill">
-                    <i class='bx bx-wifi' ></i>                    <div class="bar">
-                        <div class="percentage" style="width: 70%;background-color: rgba(68, 192, 68, 0.234);margin: 0;padding: 0;">
-                            <span class="skillName">IoT Application Development</span> 70%
-                        </div>
-                    </div>
-                </div>
-                
             </div>
         </section>
 
 
-
-        <section class="projects" id="projects">
-            <h2 class="section-title">Projects</h2>
+        <div class="project-container">
             
-            <div class="project-container">
-                <div class="project-card">
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="https://images.unsplash.com/photo-1639782792143-d8ce97e5d330?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cm92ZXJ8ZW58MHx8MHx8fDA%3D" 
+                         alt="Wi-Fi Controlled DAQ Rover" 
+                         class="project-image">
+                    <span class="project-tag">IoT</span>
+                </div>
+                <div class="project-content">
                     <h2 class="project-title">Wi-Fi Controlled DAQ Rover</h2>
                     <h3 class="project-subtitle">A Smart Data Acquisition Rover with Energy Efficiency</h3>
                     <ul class="project-details">
-                        <li><strong>4-Quadrant Drive:</strong> Supports forward, reverse, braking, and regenerative mode.</li>
-                        <li><strong>Data Logging:</strong> Captures real-time current, voltage, and environmental data.</li>
-                        <li><strong>Wireless Control:</strong> Uses MQTT to transmit data to a custom React UI.</li>
-                        <li><strong>Battery Management:</strong> Monitors and stores energy during regenerative braking.</li>
-                        <li><strong>Remote Monitoring:</strong> Web UI for real-time visualization of logged data.</li>
+                        <li><strong>4-Quadrant Mobility:</strong> Supports forward/reverse motion and regenerative braking across all quadrants for full maneuverability.</li>
+                        <li><strong>MQTT-Based Communication:</strong> Sends and receives control and telemetry data wirelessly using lightweight MQTT protocol.</li>
+                        <li><strong>Real-Time Web Interface:</strong> React-powered dashboard allows intuitive rover control and live status monitoring from any device.</li>
+                        <li><strong>Sensor Data Integration:</strong> Streams environmental and system data (e.g., speed, battery, obstacle detection) to the UI for enhanced user feedback.</li>
+                        
                     </ul>
-                    <a href="#" class="view-more">View More</a>
+                    <div class="project-links">
+                        <a href="#" class="view-more">
+                            View Project <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
                 </div>
-        
-                <div class="project-card">
-                    <h2 class="project-title">TESS AI Assistant</h2>
-                    <h3 class="project-subtitle">A Voice-Controlled AI with Multi-Function Capabilities</h3>
-                    <ul class="project-details">
-                        <li><strong>Natural Conversations:</strong> Uses NLP to respond contextually like JARVIS.</li>
-                        <li><strong>Email Automation:</strong> Can compose and send emails via voice commands.</li>
-                        <li><strong>Weather Updates:</strong> Fetches real-time weather using external APIs.</li>
-                        <li><strong>Image Generation:</strong> Creates AI-generated images based on user prompts.</li>
-                        <li><strong>API Integration:</strong> Uses multiple APIs for enhanced AI responses.</li>
-                    </ul>
-                    <a href="#" class="view-more">View More</a>
-                </div>
-                
-
-
-
-                <div class="project-card">
-                    <h2 class="project-title">Web UI Controlled Robotic Arm</h2>
-                    <h3 class="project-subtitle">IoT-based Robotic Control System</h3>
-                    <ul class="project-details">
-                        <li><strong>ESP32 Integration:</strong> Wireless control via MQTT and Web UI.</li>
-                        <li><strong>Custom UI:</strong> Developed using React for real-time movement.</li>
-                        <li><strong>Precision Control:</strong> Handles multiple degrees of freedom with servo feedback.</li>
-                        <li><strong>Event Demonstrations:</strong> Used in IoT workshops and hackathons.</li>
-                    </ul>
-                    <a href="#" class="view-more">View More</a>
-                </div>
-
-
-
-                <div class="project-card">
-                    <h2 class="project-title">Digital Function Generator</h2>
-                    <h3 class="project-subtitle">A Low-Cost Signal Generator for Lab Applications</h3>
-                    <ul class="project-details">
-                        <li><strong>Waveform Generation:</strong> Produces sine, square, and triangle waves.</li>
-                        <li><strong>Digital Control:</strong> Adjustable frequency and amplitude via microcontroller.</li>
-                        <li><strong>Compact & Affordable:</strong> Designed for low-cost, portable use.</li>
-                        <li><strong>Precision Output:</strong> Ensures stable and accurate signal generation.</li>
-                        <li><strong>Versatile Applications:</strong> Useful for testing circuits and signal processing.</li>
-                    </ul>
-                    <a href="#" class="view-more">View More</a>
-                </div>
-                
-                
-                <div class="project-card">
-                    <h2 class="project-title">MERN Club Management System</h2>
-                    <h3 class="project-subtitle">A Full-Stack Web App for Efficient Club Administration</h3>
-                    <ul class="project-details">
-                        <li><strong>Admin Panel:</strong> Manage members, events, and roles with an intuitive dashboard.</li>
-                        <li><strong>User Authentication:</strong> Secure login system with role-based access control.</li>
-                        <li><strong>Event Management:</strong> Create, update, and track club events seamlessly.</li>
-                        <li><strong>Real-Time Updates:</strong> Uses WebSockets/MQTT for instant notifications.</li>
-                        <li><strong>Responsive Design:</strong> Fully functional across mobile and desktop.</li>
-                    </ul>
-                    <a href="#" class="view-more">View More</a>
-                </div>
-                
-
-
-
-                <div class="project-card">
-                    <h2 class="project-title">1kW Dual Active Bridge (DAB) Converter</h2>
-                    <h3 class="project-subtitle">Bidirectional Power Conversion for EV Charging</h3>
-                    <ul class="project-details">
-                        <li><strong>Bidirectional Operation:</strong> Supports both grid-to-vehicle (G2V) and vehicle-to-grid (V2G) charging.</li>
-                        <li><strong>High Power Density:</strong> Designed for 1kW power transfer with high efficiency.</li>
-                        <li><strong>Soft-Switching:</strong> Uses phase-shift control for reduced switching losses.</li>
-                        <li><strong>Isolation:</strong> High-frequency transformer for safety and galvanic isolation.</li>
-                        <li><strong>EV Integration:</strong> Compatible with smart charging systems for optimized energy flow.</li>
-                    </ul>
-                    <a href="#" class="view-more">View More</a>
-                </div>
-                
             </div>
-        </section>
         
+            <!-- Repeat for other project cards with different images and tags -->
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="https://images.unsplash.com/photo-1594199679806-d543943615c8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YW50ZW5uYXxlbnwwfHwwfHx8MA%3D%3D" 
+                         alt="TESS AI Assistant" 
+                         class="project-image">
+                    <span class="project-tag">Microcontroller</span>
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title">RF + IoT health kit</h2>
+                    <h3 class="project-subtitle">An RF based health monitorning kit for internet inaccesible locations</h3>
+                    <ul class="project-details">
+                        <li><strong>Smart Health Monitoring:</strong> Medical kit equipped with sensors for collecting vital signs and health data.</li>
+                        <li><strong>RF-Based Wireless Communication:</strong> Uses RF modules to transmit sensor data securely to a nearby edge node.</li>
+                        <li><strong>MongoDB Cloud Integration:</strong> Stores real-time health metrics in a NoSQL database for scalable, reliable access.</li>
+                        <li><strong>Interactive React Dashboard:</strong> Displays patient health status through a responsive and user-friendly frontend interface.</li>
+                        
+
+                    </ul>
+                    <div class="project-links">
+                        <a href="#" class="view-more">
+                            View Project <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="https://plus.unsplash.com/premium_photo-1715639312136-56a01f236440?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZXZ8ZW58MHx8MHx8fDA%3D" 
+                         alt="TESS AI Assistant" 
+                         class="project-image">
+                    <span class="project-tag">Power Electronics</span>
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title">Dual Active Bridge</h2>
+                    <h3 class="project-subtitle">A 98% bi-directional EV charger</h3>
+                    <ul class="project-details">
+                        <li><strong>Bidirectional Power Flow:</strong> Enables efficient energy transfer in both directions, ideal for battery charging/discharging systems.</li>
+<li><strong>High-Frequency Isolation:</strong> Utilizes a high-frequency transformer for galvanic isolation and compact design.</li>
+<li><strong>Zero Voltage Switching (ZVS):</strong> Achieves soft switching for reduced switching losses and improved efficiency.</li>
+<li><strong>Wide Voltage Range:</strong> Operates efficiently across varying input and output voltages, suitable for renewable and automotive applications.</li>
+
+                    </ul>
+                    <div class="project-links">
+                        <a href="#" class="view-more">
+                            View Project <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="https://plus.unsplash.com/premium_photo-1667119473280-23ed9fb45573?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2lnbmFsJTIwcHJvY2Vzc2luZ3xlbnwwfHwwfHx8MA%3D%3D" 
+                         alt="TESS AI Assistant" 
+                         class="project-image">
+                    <span class="project-tag">Signal Processing</span>
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title">Hand Held Speed Gun</h2>
+                    <h3 class="project-subtitle">Dopple Radar based speed measurement system</h3>
+                    <ul class="project-details">
+                        <li><strong>Doppler-Based Speed Detection:</strong> Measures object velocity using microwave Doppler shift principles.</li>
+                        <li><strong>Analog Signal Conditioning:</strong> Employs Sallen-Key low-pass filters to eliminate high-frequency noise for clean signal acquisition.</li>
+                        <li><strong>STM32 FFT Processing:</strong> Uses onboard Fast Fourier Transform (FFT) to analyze frequency shifts and extract speed data in real time.</li>
+                        <li><strong>Precision & Portability:</strong> Compact, embedded system design allows for accurate speed measurements in handheld applications.</li>
+                        
+                    </ul>
+                    <div class="project-links">
+                        <a href="#" class="view-more">
+                            View Project <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="https://images.unsplash.com/photo-1621638363255-9c092fa8d4ab?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b3NjaWxsb3Njb3BlfGVufDB8fDB8fHww" 
+                         alt="TESS AI Assistant" 
+                         class="project-image">
+                    <span class="project-tag">Electrical Machines</span>
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title">HF transformer design</h2>
+                    <h3 class="project-subtitle">Design and Fabrication of 50kHz HF transformer</h3>
+                    <ul class="project-details">
+                        <li><strong>High-Frequency Operation:</strong> Operates at 50 kHz for compact size and reduced magnetic component losses.</li>
+                        <li><strong>Simulation-Driven Design:</strong> Optimized magnetic core and winding configuration using ANSYS Maxwell for minimal core and copper losses.</li>
+                        <li><strong>Fabricated Prototype:</strong> Custom-built transformer designed and wound in-house, tailored for DAB converter integration.</li>
+                        <li><strong>Enhanced Power Density:</strong> Achieves efficient energy transfer with reduced thermal footprint, ideal for modern power electronics applications.</li>
+                        
+                    </ul>
+                    <div class="project-links">
+                        <a href="#" class="view-more">
+                            View Project <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="https://images.unsplash.com/photo-1644792863360-40fa85ea52e7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVsbG8lMjB3b3JsZHxlbnwwfHwwfHx8MA%3D%3D" 
+                         alt="TESS AI Assistant" 
+                         class="project-image">
+                    <span class="project-tag">Web Development</span>
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title">Intel IoT Club Website</h2>
+                    <h3 class="project-subtitle">A full stack DB integrated club management website</h3>
+                    <ul class="project-details">
+                        <li><strong>Dynamic Content Platform:</strong> Showcases club events, projects, and announcements through a modern, responsive layout.</li>
+<li><strong>Member & Event Management:</strong> Enables streamlined onboarding, registration, and event participation tracking.</li>
+<li><strong>Tech Blog Integration:</strong> Features articles, tutorials, and updates contributed by club members to share knowledge.</li>
+<li><strong>Interactive UI/UX Design:</strong> Built using React for fast performance, smooth navigation, and mobile responsiveness.</li>
+
+                    </ul>
+                    <div class="project-links">
+                        <a href="#" class="view-more">
+                            View Project <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            
+            
+            <!-- Add more project cards as needed -->
+        </div>
 
         <section class="contact" id="contact">
             <h2 class="contact-title">Get in Touch</h2>
