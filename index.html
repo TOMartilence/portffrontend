@@ -1797,7 +1797,7 @@ document.querySelector(".contact-form").addEventListener("submit", async functio
 
     try {
         // Send data to the backend using Axios
-        const response = await axios.post("https://portfbackend-1.onrender.com", formData);
+        const response = await axios.post("https://portfbackend-1.onrender.com/contact", formData);
         
         if (response.status == 200) {
             alert("Message sent successfully!");
